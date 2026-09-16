@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.4.1/dist/p5.sound.min.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Retro Game Layout</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-inner">
+        <strong>Amigos 4.0</strong>
+
+        <nav>
+          <div class="navBtn"><a href="#">Search</a></div>
+          <div class="navBtn"><a href="#">Blog</a></div>
+          <div class="navBtn active"><a href="#">Games</a></div>
+          <div class="navBtn"><a href="#">Messenger</a></div>
+        </nav>
+
+        <button>What's New?</button>
+      </div>
+    </div>
+
+    <main class="page">
+      <!-- HEADER -->
+      <header class="header">
+        <div class="brand">AMIGOS!<span>Games</span></div>
+
+        <div class="search">
+          <label>Search the Web:</label>
+          <input placeholder="Search..." />
+          <button>Search</button>
+        </div>
+
+        <nav class="main-nav">
+          <a>Free Games</a>
+          <a>Arcade</a>
+          <a>Board</a>
+          <a>Card</a>
+          <a>Puzzle</a>
+          <a>Skills</a>
+          <a>Downloads</a>
+        </nav>
+      </header>
+
+      <!-- BANNER -->
+      <div class="banner"></div>
+
+      <!-- MAIN 3 COLUMN LAYOUT -->
+      <section class="layout">
+        <!-- LEFT COLUMN -->
+        <aside class="left-column">
+          <div class="ad box">
+            <small>ADVERTISEMENT</small>
+
+            <h4>FREE RINGTONE!</h4>
+
+            <p>Download the hottest track straight to your phone.</p>
+
+            <button>Download Now</button>
+          </div>
+
+          <div class="sdg box">
+            </div>
+          
+          <div class="comments box">
+            <h2>top comments</h2>
+
+            <p>
+              kieu them ten roi may cai binh blog cua Dan va mes cua Hang, co
+              the them hover thi hien ads → dan qua
+            </p>
+          </div>
+        </aside>
+
+        <!-- CENTRE COLUMN -->
+        <section class="centre-column">
+          <!-- p5.js canvas -->
+          <div class="mainCanvas"><!--change to your canvas name--></div>
+
+          <!-- GAME INFO -->
+        <h2 class="section-title">
+          Game Information
+        </h2>
+
+
+        <div class="info-grid">
+
+          <article id="ratings">
+            Ratings
+          </article>
+
+          <article id="producer">
+            This game is made by Gen Z?!
+          </article>
+
+          <article id="tutorial">
+            For newbiesss
+          </article>
+
+          <article>
+            Free for all!!!
+          </article>
+
+        </div>
+
+
+          <div class="footer">
+          <p>COMM2754, Digital Media Specialisation 1, Semester 2 2026</p>
+          <p>
+            RMIT University Vietnam, Saigon South Campus, School of Communication and Design, Digital Media Program 
+          </p>
+          </div>
+        </section>
+        <!--rm, comm-->
+
+        <!-- RIGHT COLUMN -->
+        <aside class="right-column">
+          <!-- QUOTE -->
+          <div class="quote box">
+            <h3>Quote of the Day</h3>
+
+            <p>
+              “I finally summed up the courage to say the words that would
+              change my life: I need help.”
+            </p>
+
+            <small>- Elton John</small>
+          </div>
+
+          <!-- PROMO -->
+          <div class="promo box">
+            <div class="quangcao"></div>    
+          </div>
+
+          <!-- TOPICS -->
+          <div class="topics box">
+            <h3>★ Hot topics ★</h3>
+
+            <p>› <a href= "https://daibieunhandan.vn/xa-hoi-hoa-cong-tac-cai-nghien-giai-phap-thiet-thuc-trong-phong-chong-ma-tuy-10385006.html" target="_blank">Xã hội hóa công tác cai nghiện: Giải pháp thiết thực trong phòng, chống ma túy</a></p>
+            <p>› <a href = "http://sciencedirect.com/science/article/pii/S0955395924003657" target="_blank">“When she's there, I no longer worry about her being arrested”—Family perspectives on compulsory drug rehabilitation in Vietnam and implications for community-based services</a></p>
+            <p>› <a href= "https://sdgs.un.org/goals/goal3#targets_and_indicators" target="_blank">SDG Goal 3: Ensure healthy lives and promote well-being for all at all age</a></p>
+            <p>› <a href= "https://parade.com/living/quote-of-the-day-elton-john-courage-sobriety-i-need-help?fbclid=IwcGRvZgFleHRuA2FlbQIxMABicmlkETFtOWFDOENnN3lBcGRRS2d6c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHikTzhl4LkKeroDY9X-h_hLcPUvTGNTWEnXu9BSx7psfGfU-nHUO7mHxA7fr_aem_HHXg9WpaVbNoS1efZAlqOA">Quote of the Day: Elton John on Courage and Sobriety</a></p>
+          </div>
+
+          <!-- GAMES -->
+          <div class="games box">
+            <small>New Yahoo Games</small>
+
+            <div>
+              <i>8</i>
+              <i>♦</i>
+              <i>BINGO</i>
+            </div>
+
+            <small>Follow Yahoo Games</small>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <script src="sketchUI.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>

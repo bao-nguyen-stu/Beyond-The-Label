@@ -1,0 +1,953 @@
+:root {
+  --purple: #3700C0;
+
+  --purple-gradient: linear-gradient(
+    180deg,
+    #7355BD 12.13%,
+    #3700C0 63.7%,
+    #A1716C 110.42%,
+    #F7CD26 126.19%
+  );
+
+  --dark: #444;
+  --line: #d7d4cb;
+
+  --paper: linear-gradient(
+    0deg,
+    #FFF 8.65%,
+    #D9D9D9 42.31%,
+    #F5F5F5 100%
+  );
+
+  --font-tiny: clamp(7px, 0.55vw, 9px);
+  --font-small: clamp(8px, 0.7vw, 11px);
+  --font-normal: clamp(9px, 0.8vw, 14px);
+  --font-medium: clamp(11px, 1vw, 18px);
+  --font-large: clamp(14px, 1.2vw, 20px);
+  --font-heading: clamp(18px, 2vw, 29px);
+  --font-display: clamp(32px, 4vw, 50px);
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Remove the solid color background */
+  background: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: var(--font-normal);
+  color: #2c2c2c;
+  
+  /* Ensure page content sits above the artwork background */
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Position the background canvas directly behind the body */
+#bg-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;          /* Keeps canvas behind body content */
+  pointer-events: none;  /* Allows clicking through to page elements */
+  overflow: hidden;
+}
+
+#bg-canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  image-rendering: pixelated; /* Sharp pixel art scaling */
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+  height: 6vh;
+  max-height: 40px;
+
+  background: var(--purple-gradient);
+  color: white;
+
+  font-size: var(--font-normal);
+}
+
+.topbar-inner {
+  width: min(96vw, calc(100% - 72px));
+  height: 100%;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: clamp(10px, 1.5vw, 22px);
+}
+
+.topbar strong {
+  font-family: Georgia, serif;
+  font-size: var(--font-medium);
+}
+
+.topbar nav {
+  display: flex;
+  height: 100%;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.topbar .navBtn {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 10px;
+}
+
+.topbar .navBtn:hover,
+.topbar .navBtn.active {
+  background-image: linear-gradient(
+    0deg,
+    #7355BD 12.13%,
+    #3700C0 63.7%,
+    #A1716C 110.42%,
+    #F7CD26 126.19%
+  );
+}
+
+.topbar button {
+  margin-left: auto;
+
+  background: transparent;
+  color: white;
+
+  border: 2px solid #b9acd0;
+
+  font-size: var(--font-normal);
+  font-weight: bold;
+
+  padding: 3px 8px;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.page {
+  width: 80vw;
+  margin: 3px auto 30px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  min-height: 70px;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+
+  padding: 7px 10px;
+
+  background: linear-gradient(
+    0deg,
+    #f7cd26 5.65%,
+    #9670ff 36.31%,
+    #d2cdf3 120%
+  );
+
+  border: 2px solid #9670ff;
+}
+
+.brand {
+  font-family: Georgia, serif;
+  font-size: var(--font-heading);
+  font-weight: bold;
+  color: #3700c0;
+}
+
+.brand span {
+  margin-left: 3px;
+
+  font-family: Arial, sans-serif;
+  font-size: var(--font-medium);
+
+  color: #f7cd26;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  padding: 6px;
+
+  border: 1px solid #fff;
+  border-radius: 3px;
+
+  background: var(--paper);
+
+  color: #555;
+
+  font-size: var(--font-small);
+}
+
+.search input {
+  width: clamp(120px, 12vw, 170px);
+  height: 18px;
+
+  padding: 2px 5px;
+
+  border: 1px solid #aaa;
+
+  font-size: var(--font-tiny);
+}
+
+.search button {
+  height: 19px;
+
+  padding: 0 12px;
+
+  border: 0;
+
+  background-image: var(--purple-gradient);
+  color: white;
+
+  font-size: var(--font-small);
+  font-weight: bold;
+}
+
+
+/* =========================
+   MAIN NAV
+========================= */
+
+.main-nav {
+  grid-column: 1 / -1;
+  justify-self: center;
+  display: flex;
+  margin-top: 9px;
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.main-nav a {
+  color: #3700c0;
+  font-size: var(--font-small);
+  font-weight: bold;
+}
+
+.main-nav a + a::before {
+  content: "|";
+
+  margin-right: clamp(8px, 1vw, 14px);
+
+  color: #3700c0;
+}
+
+.main-nav a:hover {
+  color: #7355BD;
+  cursor: pointer;
+}
+
+
+/* =========================
+   BANNER
+========================= */
+
+@property --color-start {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #f7cd26;
+}
+
+@property --color-mid {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #7c0ad8;
+}
+
+@property --color-end {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #3700C0;
+}
+
+.banner {
+  width: 100%;
+  height: 51px;
+
+  margin: 5px 0;
+
+  position: relative;
+  overflow: hidden;
+
+  border: 2px solid #F8F9F1;
+
+  background-color: #3700C0;
+
+  background:
+    linear-gradient(
+      to bottom right,
+      var(--color-start) 0%,
+      var(--color-mid) 50%,
+      var(--color-end) 100%
+    ) bottom right / 51% 51% no-repeat,
+
+    linear-gradient(
+      to bottom left,
+      var(--color-start) 0%,
+      var(--color-mid) 50%,
+      var(--color-end) 100%
+    ) bottom left / 51% 51% no-repeat,
+
+    linear-gradient(
+      to top left,
+      var(--color-start) 0%,
+      var(--color-mid) 50%,
+      var(--color-end) 100%
+    ) top left / 51% 51% no-repeat,
+
+    linear-gradient(
+      to top right,
+      var(--color-start) 0%,
+      var(--color-mid) 50%,
+      var(--color-end) 100%
+    ) top right / 51% 51% no-repeat;
+
+  animation: centerTunnelLoop 4s linear infinite;
+}
+
+@keyframes centerTunnelLoop {
+  0% {
+    --color-start:  #F7CD26;
+    --color-mid: #7C0AD8;
+    --color-end: #3700C0;
+  }
+
+  33% {
+    --color-start: #3700C0;
+    --color-mid: #F7CD26;
+    --color-end: #7C0AD8;
+  }
+
+  66% {
+    --color-start: #7C0AD8;
+    --color-mid: #3700C0;
+    --color-end: #F7CD26;
+  }
+
+  100% {
+    --color-start: #F7CD26;
+    --color-mid: #7C0AD8;
+    --color-end: #3700C0;
+  }
+}
+
+.banner canvas {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================
+   THREE COLUMN LAYOUT
+========================= */
+
+.layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.6fr)
+    minmax(0, 1.8fr)
+    minmax(0, 0.6fr);
+  gap: 6 px;
+  align-items: start;
+  background-color: #af9bcf;
+  border: 6px solid #af9bcf;
+}
+
+/* =========================
+   COLUMN STRUCTURE
+========================= */
+
+.left-column,
+.centre-column,
+.right-column {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+/* Every new direct child fits automatically */
+
+.left-column > *,
+.centre-column > *,
+.right-column > * {
+  width: 100%;
+  max-width: 100%;
+
+  box-sizing: border-box;
+
+  min-width: 0;
+}
+
+
+/* =========================
+   GENERAL BOX
+========================= */
+
+.box {
+  width: 100%;
+
+  background: linear-gradient(
+    110deg,
+    #fff,
+    #e9e7df
+  );
+
+  border: 1px solid #c9c8c2;
+
+  margin: 0;
+
+  overflow-wrap: break-word;
+}
+
+
+/* =========================
+   LEFT COLUMN
+========================= */
+
+.left-column .box {
+  padding: 9px;
+}
+
+
+/* =========================
+   ADVERTISEMENT
+========================= */
+
+.ad {
+  min-height: 127px;
+  text-align: center;
+  background-image: linear-gradient(
+    0deg,
+    #FFF 1.65%,
+    #dedede 70.31%,
+    #F5F5F5 90%
+  );
+}
+
+.ad small {
+  display: block;
+
+  margin: 3px -8px 10px;
+
+  color: #999;
+
+  font-size: var(--font-tiny);
+  letter-spacing: 1px;
+}
+
+.ad h4 {
+  margin: 9px 0 24px;
+   font-family: Georgia, serif;
+  font-size: var(--font-medium);
+}
+
+.ad p {
+  line-height: 1.2;
+
+  font-size: var(--font-small);
+}
+
+.ad button {
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  background-image: var(--purple-gradient);
+  color: white;
+  font-size: var(--font-small);
+  font-weight: bold;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+
+/* =========================
+   SDG 
+========================= */
+.sdg.box,
+.sdg {
+  position: relative;
+  width: 100%;
+  height: 80px;          
+  overflow: hidden;        
+  box-sizing: border-box;
+  padding: 3px;
+  background: #33ff58;
+}
+
+.sdg.box canvas,
+.sdg canvas {
+  display: block;          
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+
+/* =========================
+   COMMENTS
+========================= */
+
+.comments {
+  min-height: 234px;
+}
+
+.comments h2 {
+  margin: 0 0 8px;
+
+  font-size: var(--font-large);
+}
+
+.comments p {
+  line-height: 1.2;
+
+  font-size: var(--font-small);
+  font-weight: bold;
+}
+
+
+/* =========================
+   CENTRE COLUMN
+========================= */
+
+.centre-column {
+  padding: 0 6px;
+}
+
+.mainCanvas {
+  width: 100%;
+  height: auto;
+
+  padding: 5px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border: 2px solid var(--purple);
+
+  background: #d5c2df;
+}
+
+.mainCanvas canvas {
+  display: block;
+
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 8px 12px;
+
+  border: 2px solid var(--purple);
+  color: var(--purple);
+  text-align: center;
+  font-size: var(--font-large);
+
+  background-image: 
+    /* 1. LEFT SIDE: Solid Purple Outer + Gap + Narrow Stripe + Gap + Wide Stripe */
+    linear-gradient(
+      135deg,
+      var(--purple) calc(50% - 225px),
+      transparent calc(50% - 225px), transparent calc(50% - 217px), /* Outer Gap */
+      var(--purple) calc(50% - 217px), var(--purple) calc(50% - 211px), /* Narrow Stripe */
+      transparent calc(50% - 211px), transparent calc(50% - 203px), /* Inner Gap */
+      var(--purple) calc(50% - 203px), var(--purple) calc(50% - 175px), /* Main Thick Stripe */
+      transparent calc(50% - 175px)
+    ),
+    /* 2. RIGHT SIDE: Main Thick Stripe + Gap + Narrow Stripe + Gap + Solid Purple Outer */
+    linear-gradient(
+      45deg,
+      transparent calc(50% + 175px),
+      var(--purple) calc(50% + 175px), var(--purple) calc(50% + 203px), /* Main Thick Stripe */
+      transparent calc(50% + 203px), transparent calc(50% + 211px), /* Inner Gap */
+      var(--purple) calc(50% + 211px), var(--purple) calc(50% + 217px), /* Narrow Stripe */
+      transparent calc(50% + 217px), transparent calc(50% + 225px), /* Outer Gap */
+      var(--purple) calc(50% + 225px)
+    ),
+    /* 3. Base Paper Texture Background */
+    var(--paper);
+}
+
+
+/* =========================
+   INFO GRID
+========================= */
+
+.info-grid {
+  width: 100%;
+  height: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  border: 2px solid var(--purple);
+  border-top: 0;
+}
+
+.info-grid article {
+  min-width: 0;
+  height: auto;
+
+  padding: 17px 12px;
+
+  background: linear-gradient(
+    120deg,
+    #fff,
+    #e8e7e0
+  );
+
+  border: 2px solid var(--purple);
+
+  font-size: var(--font-medium);
+  font-weight: bold;
+
+  overflow-wrap: break-word;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  width: 100%;
+  height: auto;
+
+  padding: 12px 42px;
+
+  background: linear-gradient(
+    to bottom,
+    #7355BD,
+    #3700C0
+  );
+
+  border: 2px solid #F8F9F1;
+
+  color: #FFF;
+
+  font-size: var(--font-tiny);
+  font-weight: bold;
+
+  text-shadow: 1px 1px #3700C0;
+  text-align: center;
+
+  box-shadow:
+    inset 0 2px rgba(255,255,255,.35);
+}
+
+.footer p {
+  margin: 3px 0;
+}
+
+
+/* =========================
+   RIGHT COLUMN
+========================= */
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote {
+  height: auto;
+  padding: 0 9px 6px 9px;
+}
+
+.quote h3,
+.topics h3 {
+  margin: 0 -9px 10px;
+
+  padding: 6px 8px;
+
+  background: var(--purple);
+
+  color: white;
+
+  font-family: Georgia, serif;
+  font-size: var(--font-medium);
+  font-weight: bold;
+}
+
+.quote p {
+  margin: 8px;
+
+  color: #5b5b5b;
+
+  font-size: var(--font-heading);
+  font-style: italic;
+
+  line-height: 1.5;
+}
+
+.quote small {
+  margin-left: 8px;
+
+  font-size: var(--font-small);
+}
+
+
+/* =========================
+   PROMO
+========================= */
+
+.promo {
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  /* background: repeating-linear-gradient(
+    120deg,
+    #ddd 0 7px,
+    #222 7px 11px,
+    #e7c52a 11px 16px
+  ); */
+}
+
+.promo .quangcao {
+  inset: 12px 0 0;
+  background: #f3f3ef;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.promo .quangcao img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+
+
+/* =========================
+   TOPICS
+========================= */
+
+.topics {
+  height: auto;
+  padding: 0 8px;
+  overflow: hidden;
+  background: #f7efca;
+}
+
+.topics h3 {
+  margin: 0 -8px 8px;
+
+  padding: 3px;
+
+  background: #f5d92e;
+
+  border: 3px solid #53a643;
+
+  color: #ba7410;
+
+  text-align: center;
+}
+
+.topics p {
+  margin: 6px 0;
+
+  padding-bottom: 8px;
+
+  border-bottom: 1px dotted #777;
+
+  font-size: var(--font-small);
+}
+
+.topics a {
+  font-family: arial;
+}
+
+.topics a:hover {
+  color: purple;
+}
+
+/* =========================
+   GAMES
+========================= */
+
+.games {
+  min-height: 140px;
+
+  padding: 8px;
+}
+
+.games small {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #666;
+
+  font-size: var(--font-tiny);
+}
+
+.games div {
+  display: flex;
+
+  gap: 5px;
+
+  margin-bottom: 10px;
+}
+
+.games i {
+  width: 47px;
+  height: 47px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #9bb7c2;
+
+  background: #eef5f6;
+
+  font-size: var(--font-small);
+  font-style: normal;
+  font-weight: bold;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 760px) {
+
+  .page {
+    width: min(
+      calc(100% - 16px),
+      620px
+    );
+  }
+
+  .topbar-inner {
+    width: min(
+      calc(100% - 16px),
+      620px
+    );
+  }
+
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .centre-column {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    padding: 0;
+  }
+
+  .left-column,
+  .right-column {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 5px;
+border: 3px solid #af9bcf;
+  }
+
+  .left-column .box,
+  .right-column .box {
+    margin: 0;
+  }
+
+  .comments {
+    grid-column: 1 / -1;
+  }
+
+  .quote,
+  .promo,
+  .topics,
+  .hot,
+  .games {
+    min-height: 100px;
+    height: auto;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .search {
+    justify-self: stretch;
+
+    margin-top: 6px;
+  }
+
+  .search input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .game-panel {
+    height: 320px;
+  }
+}
